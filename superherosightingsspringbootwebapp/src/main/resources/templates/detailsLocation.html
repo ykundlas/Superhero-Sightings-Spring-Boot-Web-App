@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Superhero Sightings</title>
+        <style>
+            #description{
+
+                margin-bottom:10px;   
+
+            }
+
+            #colour{
+                background-color: #ffffe6;
+            }
+
+            #backgroundcolour{
+                background-color: #b0daf1 ;
+            }
+
+            #top{
+                background-color:#f194b4;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Main Body of Page -->
+        <div class="container"  id="backgroundcolour">
+            <div class="row m-2" id ="top">
+                <div class="col text-center border border-dark">
+                    <h1>Superhero Sightings: Location</h1>
+                </div>
+            </div>
+            <div class="row m-2 border border-dark" id ="top">
+                <div class="col text-center m-3">
+                    <a href="index" class="btn btn-outline-primary btn-lg">Home</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="heroes" class="btn btn-outline-primary btn-lg">Supers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="superpowers" class="btn btn-outline-primary btn-lg">Powers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                </div>
+
+            </div>
+
+
+            <div class="col text-center">
+                <h3> Details of the Location: <span th:text="${location.name}"></span></h3>
+            </div>
+
+
+            <!-- Description -->
+            <div class="row m-2" id="colour">
+                <div class="col-6 border border-dark">
+
+                    <div class="row">
+                        <div class="col-4 text-left"><strong>Description :</strong></div>
+                        <div class="col-8 text-left">
+                            <span th:text="${location.description}"></span>
+                            <p th:if="${location.description == null||location.description.isEmpty()||location.description.trim().isEmpty()}">No description available</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 text-left"><strong>Address :</strong></div>
+                        <div class="col-8  text-left">
+                            <span th:text="${location.address}"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left"><strong>Latitude:</strong></div>
+                        <div class="col-8 text-left">
+                            <span th:text="${location.latitude}"></span>
+                        </div>
+                    </div>
+                    <div class="row" id="description">
+                        <div class="col-4 text-left"><strong>Longitude:</strong></div>
+                        <div class="col-8 text-left">
+                            <span th:text="${location.longitude}"></span>
+                        </div>
+                    </div>
+
+                    <div class="row m-3">
+                        <div class="col-2 text-center m-3 border border-dark">
+                            <a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a>
+
+                        </div>
+                        <div class="col-2 text-center m-3 border border-dark">
+                            <a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-6 border border-dark">
+                    <div class="col text-center">
+                        <span>Supers sighted here</span>
+                        <div class="text-left">
+                            <span th:each="hero : ${heroes}">
+                                <span th:text="${
+                                      hero.name}">
+                                    display hero</span><br/>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- End main body -->
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>;
+
+
+
